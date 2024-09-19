@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recognize Missing Child</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to CSS -->
+</head>
+<body>
+    <h1>Upload Image for Face Recognition</h1>
+    <br>
+    <form action="/recognize-face" method="POST" enctype="multipart/form-data">
+        <label for="childPhoto">Upload Child Image:</label>
+        <input type="file" name="childPhoto" id="childPhoto" required><br><br>
+        <button type="submit">Recognize</button>
+    </form>
+</body>
+</html>

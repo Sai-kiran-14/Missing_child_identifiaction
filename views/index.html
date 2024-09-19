@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Finding Child Portal">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="/images/sample.jpeg" alt="Logo" class="header-image">
+            </div>
+            <div class="header-buttons" id="auth-buttons">
+                <!-- Login/Signup buttons will show if not logged in -->
+                <button class="header-btn" id="about-button">About</button>
+                <form action="/login" method="get" id="login-btn">
+                    <button type="submit" class="header-btn">Login</button>
+                </form>
+                <form action="/signup" method="get" id="signup-btn">
+                    <button type="submit" class="header-btn">Sign Up</button>
+                </form>
+                <!-- Welcome message and Logout button will show if logged in -->
+                <span id="welcome-message" style="display:none;">Welcome, <strong id="user-name"></strong>!</span>
+                <form action="/logout" method="get" id="logout-btn" style="display:none;">
+                    <button type="submit" class="header-btn">Logout</button>
+                </form>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Section -->
+    <main>
+        <div class="message-container">
+            <h1>Welcome to the Missing Child Portal</h1>
+            <p>
+                This portal helps parents to register and report the details of their missing child.
+                Parents can report missing kids, search for missing children, and more.
+            </p>
+        </div>
+        <div class="cards-container">
+            <div class="card">
+                <h2>Register a Case</h2>
+                <p>Click on the button below to register a missing child case.</p>
+                <form action="/register" method="get">
+                    <button class="card-btn" id="register-card-button">Register</button>
+                </form>
+            </div>
+            <div class="card">
+                <h2>Identify the Child</h2>
+                <p>Click on the button below to check if the child is a registered missing case.</p>
+                <form action="/recognize" method="get">
+                    <button class="card-btn" id="find-card-button">Recognition</button>
+                </form>
+                <!-- <button class="card-btn" id="find-card-button">Recognition</button> -->
+    
+                <!-- Hidden form for uploading child image -->
+                <!-- <form action="/recognize-face" method="POST" enctype="multipart/form-data" id="recognition-form" style="display: none;">
+                    <label for="childPhoto">Upload Child Image:</label>
+                    <input type="file" name="childPhoto" id="childPhoto" required>
+                    <button type="submit">Submit for Recognition</button>
+                </form> -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <h2>Current Missing Children Information in India</h2>
+            <p><strong>Note:</strong> For the latest information, refer to official sources or local authorities.</p>
+            <div class="missing-info">
+                <p><strong>Total Missing Cases:</strong> 5,000+</p>
+                <p><strong>Recent Cases Reported:</strong> 200+</p>
+                <p><strong>Currently Active Cases:</strong> 1,200+</p>
+                <p><strong>Location with Highest Reports:</strong> Delhi</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userNameElement = document.getElementById('user-name');
+            const loginBtn = document.getElementById('login-btn');
+            const signupBtn = document.getElementById('signup-btn');
+            const logoutBtn = document.getElementById('logout-btn');
+            const welcomeMessage = document.getElementById('welcome-message');
+
+            fetch('/session-info')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.loggedIn) {
+                        userNameElement.textContent = data.user.name;
+                        welcomeMessage.style.display = 'inline';
+                        logoutBtn.style.display = 'inline';
+                        loginBtn.style.display = 'none';
+                        signupBtn.style.display = 'none';
+                    } else {
+                        loginBtn.style.display = 'inline';
+                        signupBtn.style.display = 'inline';
+                        welcomeMessage.style.display = 'none';
+                        logoutBtn.style.display = 'none';
+                    }
+                });
+        });
+
+    //     document.getElementById('find-card-button').addEventListener('click', function() {
+    //     // Show the hidden upload form
+    //     document.getElementById('recognition-form').style.display = 'block';
+    // });
+    </script>
+</body>
+</html>

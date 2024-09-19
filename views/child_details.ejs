@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Child Found</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <header>
+        <h1>Child Identification Portal</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Child Found</h2>
+            <p><strong>Name:</strong> <%= childName %></p>
+            <p><strong>Age:</strong> <%= age %></p>
+            <p><strong>Unique Features:</strong> <%= features %></p>
+            <p><strong>Contact Info:</strong> <%= contact %></p>
+            <div>
+                <img src="<%= photo %>" alt="<%= childName %>" style="width:300px;height:300px;">
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Child Identification Portal</p>
+    </footer>
+</body>
+</html>
